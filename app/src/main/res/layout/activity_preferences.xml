@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo"
+    tools:context=".Preferences">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#F44336"
+        android:title="Play Juegos"
+        android:titleTextColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:titleTextAppearance="@style/ToolbarEstilo"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:text="Elige una opción:"
+        android:textColor="@color/boton"
+        android:padding="10dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <RadioGroup
+        android:id="@+id/opcion"
+        android:layout_width="276dp"
+        android:layout_height="280dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <RadioButton
+            android:id="@+id/angry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Angry Birds"/>
+
+        <RadioButton
+            android:id="@+id/dragon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dragon fly" />
+
+        <RadioButton
+            android:id="@+id/hill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hill climbing racing" />
+
+        <RadioButton
+            android:id="@+id/pocket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pocket soccer" />
+
+        <RadioButton
+            android:id="@+id/radiant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Radiant defense" />
+    </RadioGroup>
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="7"
+        android:stepSize="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/opcion" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="370dp"
+        android:layout_height="50dp"
+        android:thumbTint="@color/azul"
+        android:progressTint="@color/azul"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:clickable="true"
+        android:backgroundTint="@color/azul"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.FloatingActionButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/check" />
+</androidx.constraintlayout.widget.ConstraintLayout>
