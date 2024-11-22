@@ -62,7 +62,11 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             (R.id.action_settings) -> {return true}
-            (R.id.action_add) -> {return true}
+            R.id.action_add -> {
+                val intent = Intent(this, Deportes::class.java)
+                startActivity(intent)
+                return true
+            }
             else -> {return super.onOptionsItemSelected(item)} }
     }
 

@@ -8,8 +8,6 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -37,7 +35,7 @@ class About : AppCompatActivity() {
             R.drawable.image5, R.drawable.image6, R.drawable.image7, R.drawable.image8
         )
 
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerViewGeneros)
+        val recyclerView: RecyclerView = findViewById(R.id.deportes)
 
         val personas = nombres.zip(horas).zip(fotos) { (nombre, horas), foto ->
             Persona(nombre, horas, foto)
@@ -61,7 +59,11 @@ class About : AppCompatActivity() {
                 return true
             }
             (R.id.action_settings) -> {return true}
-            (R.id.action_add) -> {return true}
+            R.id.action_add -> {
+                val intent = Intent(this, Deportes::class.java)
+                startActivity(intent)
+                return true
+            }
             else -> {return super.onOptionsItemSelected(item)} }
     }
 }

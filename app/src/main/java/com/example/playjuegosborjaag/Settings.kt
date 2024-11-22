@@ -106,7 +106,7 @@ class Settings : AppCompatActivity() {
             "Estrategia", "Lucha", "Musical", "Rol", "Simulación"
         )
 
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerViewGeneros)
+        val recyclerView: RecyclerView = findViewById(R.id.deportes)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = GenerosAdapter(generos) { genero ->
             Toast.makeText(this,  "$genero", Toast.LENGTH_SHORT).show()

@@ -5,14 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EADF95"
-    tools:context=".About">
+    android:background="#AAF4FD"
+    tools:context=".Deportes">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#FFEB3B"
+        android:background="#00BCD4"
         android:title="Play Juegos"
         android:titleTextColor="@android:color/white"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,5 +28,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:clickable="true"
+        android:backgroundTint="@color/mostaza"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.FloatingActionButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/check" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
