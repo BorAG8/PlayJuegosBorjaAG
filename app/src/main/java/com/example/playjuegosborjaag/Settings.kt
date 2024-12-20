@@ -1,3 +1,6 @@
+/**
+ * Settings.kt - Pantalla de configuración de la aplicación.
+ */
 package com.example.playjuegosborjaag
 
 import android.animation.ObjectAnimator
@@ -15,12 +18,16 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+/**
+ * Settings - Permite a los usuarios gestionar la configuración y explorar opciones de navegación.
+ */
 class Settings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_settings)
 
+        // Configuración de la barra de navegación inferior
         val bottomAppBar: BottomAppBar = findViewById(R.id.bottomAppBar)
         setSupportActionBar(bottomAppBar)
 
@@ -37,17 +44,18 @@ class Settings : AppCompatActivity() {
             }
         }
 
-
+        // Configuración del botón flotante
         val fab: FloatingActionButton = findViewById(R.id.fab)
 
         fab.setOnClickListener {
-
             Toast.makeText(this, "Se desplaza hacia arriba", Toast.LENGTH_SHORT).show()
 
+            // Animación de movimiento hacia arriba
             val moveUp = ObjectAnimator.ofFloat(fab, "translationY", 0f, -200f)
             moveUp.duration = 300
             moveUp.start()
 
+            // Animación de retorno a su posición original
             fab.postDelayed({
                 Toast.makeText(this, "Vuelve a su sitio...", Toast.LENGTH_SHORT).show()
                 val moveDown = ObjectAnimator.ofFloat(fab, "translationY", -200f, 0f)
@@ -55,6 +63,8 @@ class Settings : AppCompatActivity() {
                 moveDown.start()
             }, 3000)
         }
+
+        // Configuración del grupo de chips
         val chipGroup: ChipGroup = findViewById(R.id.chipGroup)
 
         val chip1: Chip = findViewById(R.id.chip1)
@@ -65,42 +75,16 @@ class Settings : AppCompatActivity() {
         val chip6: Chip = findViewById(R.id.chip6)
         val chip7: Chip = findViewById(R.id.chip7)
 
-        chip1.setOnClickListener {
-            if (chip1.isChecked) {
-                Toast.makeText(this, "Seleccionado: ${chip1.text}", Toast.LENGTH_SHORT).show()
-            }
-        }
-        chip2.setOnClickListener {
-            if (chip2.isChecked) {
-                Toast.makeText(this, "Seleccionado: ${chip2.text}", Toast.LENGTH_SHORT).show()
-            }
-        }
-        chip3.setOnClickListener {
-            if (chip3.isChecked) {
-                Toast.makeText(this, "Seleccionado: ${chip3.text}", Toast.LENGTH_SHORT).show()
-            }
-        }
-        chip4.setOnClickListener {
-            if (chip4.isChecked) {
-                Toast.makeText(this, "Seleccionado: ${chip4.text}", Toast.LENGTH_SHORT).show()
-            }
-        }
-        chip5.setOnClickListener {
-            if (chip5.isChecked) {
-                Toast.makeText(this, "Seleccionado: ${chip5.text}", Toast.LENGTH_SHORT).show()
-            }
-        }
-        chip6.setOnClickListener {
-            if (chip6.isChecked) {
-                Toast.makeText(this, "Seleccionado: ${chip6.text}", Toast.LENGTH_SHORT).show()
-            }
-        }
-        chip7.setOnClickListener {
-            if (chip7.isChecked) {
-                Toast.makeText(this, "Seleccionado: ${chip7.text}", Toast.LENGTH_SHORT).show()
+        // Configura los listeners para los chips
+        listOf(chip1, chip2, chip3, chip4, chip5, chip6, chip7).forEach { chip ->
+            chip.setOnClickListener {
+                if (chip.isChecked) {
+                    Toast.makeText(this, "Seleccionado: ${chip.text}", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
+        // Configuración del RecyclerView para mostrar géneros
         val generos = listOf(
             "Acción", "Aventura", "Deportes", "Disparos",
             "Estrategia", "Lucha", "Musical", "Rol", "Simulación"
@@ -109,13 +93,15 @@ class Settings : AppCompatActivity() {
         val recyclerView: RecyclerView = findViewById(R.id.deportes)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = GenerosAdapter(generos) { genero ->
-            Toast.makeText(this,  "$genero", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "$genero", Toast.LENGTH_SHORT).show()
         }
-
-
-
     }
 
+    /**
+     * Maneja las acciones seleccionadas en el menú de opciones.
+     * @param item Elemento seleccionado del menú.
+     * @return Booleano indicando si se manejó la acción.
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_home -> {
@@ -123,19 +109,17 @@ class Settings : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
-            R.id.action_search -> {
-                true
-            }
-            R.id.action_add -> {
-                true
-            }
+            R.id.action_search -> true
+            R.id.action_add -> true
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+    /**
+     * Crea el menú de opciones en la barra de navegación inferior.
+     */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_bottom_app, menu)
         return true
     }
-
 }

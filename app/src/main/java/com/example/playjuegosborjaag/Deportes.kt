@@ -1,3 +1,6 @@
+/**
+ * Deportes.kt - Pantalla que lista diferentes deportes con opciones seleccionables.
+ */
 package com.example.playjuegosborjaag
 
 import android.content.Intent
@@ -12,6 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+/**
+ * Deportes - Muestra una lista de deportes disponibles en un RecyclerView.
+ */
 class Deportes : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
@@ -22,9 +28,11 @@ class Deportes : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_deportes)
 
+        // Configura la barra de herramientas
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        // Datos de deportes
         val deportes = listOf(
             Deporte("Fútbol", R.drawable.futbol),
             Deporte("Baloncesto", R.drawable.baloncesto),
@@ -37,6 +45,7 @@ class Deportes : AppCompatActivity() {
             Deporte("Pinpon", R.drawable.pinpon)
         )
 
+        // Configuración del RecyclerView
         recyclerView = findViewById(R.id.deportes)
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = DeporteAdapter(deportes)
@@ -53,26 +62,27 @@ class Deportes : AppCompatActivity() {
                 Toast.makeText(this, "No has seleccionado ningún deporte", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.getItemId()) {
+        return when (item.itemId) {
             R.id.action_search -> {
                 val intent = Intent(this, Settings::class.java)
                 startActivity(intent)
-                return true
+                true
             }
-            (R.id.action_settings) -> {return true}
+            R.id.action_settings -> true
             R.id.action_add -> {
                 val intent = Intent(this, Deportes::class.java)
                 startActivity(intent)
-                return true
+                true
             }
-            else -> {return super.onOptionsItemSelected(item)} }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

@@ -1,3 +1,6 @@
+/**
+ * About.kt - Actividad que muestra información sobre los jugadores y sus estadísticas.
+ */
 package com.example.playjuegosborjaag
 
 import android.content.Intent
@@ -11,15 +14,20 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * About - Pantalla que lista jugadores con sus nombres, horas jugadas y fotos.
+ */
 class About : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_about)
 
+        // Configura la barra de herramientas
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        // Datos de jugadores
         val nombres = listOf(
             "María Mata", "Antonio Sanz", "Carlos", "Berta",
             "Héctor Campos", "Ismael", "Jesus Fernandez", "Cristina"
@@ -35,8 +43,10 @@ class About : AppCompatActivity() {
             R.drawable.image5, R.drawable.image6, R.drawable.image7, R.drawable.image8
         )
 
+        // Configuración del RecyclerView
         val recyclerView: RecyclerView = findViewById(R.id.deportes)
 
+        // Combinación de datos en una lista de objetos Persona
         val personas = nombres.zip(horas).zip(fotos) { (nombre, horas), foto ->
             Persona(nombre, horas, foto)
         }
@@ -47,23 +57,33 @@ class About : AppCompatActivity() {
         }
     }
 
+    /**
+     * Crea el menú de opciones en la barra de herramientas.
+     */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
+
+    /**
+     * Maneja las acciones seleccionadas en el menú de opciones.
+     * @param item Elemento seleccionado del menú.
+     * @return Booleano indicando si se manejó la acción.
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.getItemId()) {
+        return when (item.itemId) {
             R.id.action_search -> {
                 val intent = Intent(this, Settings::class.java)
                 startActivity(intent)
-                return true
+                true
             }
-            (R.id.action_settings) -> {return true}
+            R.id.action_settings -> true
             R.id.action_add -> {
                 val intent = Intent(this, Deportes::class.java)
                 startActivity(intent)
-                return true
+                true
             }
-            else -> {return super.onOptionsItemSelected(item)} }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
